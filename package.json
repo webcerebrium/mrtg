@@ -1,0 +1,15 @@
+{
+  "name": "mrtg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+     "build": "docker build --tag wcrbrm/mrtg .",
+     "start": "docker run -d -v /var/www/mrtg:/var/www/mrtg -v /etc/lighttpd/:/etc/lighttpd wcrbrm/mrtg",
+     "swap:on": "/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024 && /sbin/mkswap /var/swap.1 && chown 0600 /var/swap.1 && /sbin/swapon /var/swap.1",
+     "clean": "docker system prune -a"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
