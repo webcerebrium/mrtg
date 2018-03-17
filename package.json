@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
      "build": "docker build --tag wcrbrm/mrtg .",
-     "start": "docker run -d -v /var/www/mrtg:/var/www/mrtg -v /etc/lighttpd/:/etc/lighttpd wcrbrm/mrtg",
+     "start": "docker run -d  -p 681:681 -v etc_mrtg:/etc/mrtg -v etc_lighttpd:/etc/lighttpd -v www_mrtg:/var/www/mrtg wcrbrm/mrtg",
      "swap:on": "/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024 && /sbin/mkswap /var/swap.1 && chown 0600 /var/swap.1 && /sbin/swapon /var/swap.1",
-     "clean": "docker system prune -a"
+     "clean": "docker system prune -a && docker volume rm `docker volume ls -q -f dangling=true`"
   },
   "keywords": [],
   "author": "",
